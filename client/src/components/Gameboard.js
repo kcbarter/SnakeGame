@@ -20,9 +20,7 @@ export default class Gameboard extends React.Component {
 
   render() {
     return(
-      <div>
-        <canvas ref="gameboard" width={300} height={400} />
-      </div>
+      <canvas ref="gameboard"/>
     )
   }
 }

@@ -10,6 +10,7 @@ function App() {
       </div>
       <div className="Game">
         <Gameboard/>
+        <button className="Start_button">Start!</button>
       </div>
       <div className="Personal_scores">
         <text>Personal Scores</text>
