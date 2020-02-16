@@ -1,9 +1,21 @@
 import React from 'react';
 
+function rect(props) {
+  const {ctx, x, y, width, height, color} = props;
+  ctx.fillRect(x, y, width, height); 
+}
+
 export default class Gameboard extends React.Component {
   componentDidMount() {
-    const canvas = this.refs.gameboard
-    const ctx = canvas.getContext("2d")
+    this.intiateCanvas();
+  }
+
+  intiateCanvas() {
+    const ctx = this.refs.gameboard.getContext("2d");
+    ctx.fillStyle = 'red';
+    ctx.fillRect(10, 10, 10, 10);
+    ctx.fillRect(20, 10, 10, 10);
+    ctx.fillRect(30,10, 10, 10);
   }
 
   render() {
