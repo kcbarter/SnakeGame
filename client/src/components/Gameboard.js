@@ -30,6 +30,43 @@ export default class Gameboard extends React.Component {
     this.setState({isHidden: !this.state.isHidden});
   }
 
+  moveSnake(e){
+    var keyCode = 39 || e.keyCode;
+
+    switch(keyCode){
+      case 37: 
+        console.log(keyCode);
+        break;
+      case 38:
+        console.log(keyCode);
+        break;
+      case 39:
+        console.log(keyCode);
+        break;
+      case 40:
+        console.log(keyCode);
+        break;
+      default:
+        console.log("Not an arrow key");
+    }
+  }
+
+  moveLeft(){
+    
+  }
+
+  moveRight(){
+
+  }
+
+  moveUp(){
+    
+  }
+
+  moveDown(){
+
+  }
+
   endGame() {
     const ctx = this.refs.gameboard.gameboard("2d");
     ctx.clearRect(0, 0, 300, 300);
