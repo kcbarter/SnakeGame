@@ -7,6 +7,14 @@ function rect(props) {
 }
 
 export default class Gameboard extends React.Component {
+  constructor(props){
+    super(props);
+
+    this.state = {isHidden: false};
+    
+    this.startGame = this.startGame.bind(this);
+  }
+
   componentDidMount() {
     this.intiateCanvas();
   }
@@ -16,6 +24,10 @@ export default class Gameboard extends React.Component {
     rect({ctx, x: 10, y: 10, width: 10, height: 10});
     rect({ctx, x: 20, y: 10, width: 10, height: 10});
     rect({ctx, x: 30, y: 10, width: 10, height: 10});
+  }
+  
+  startGame(){
+    this.setState({isHidden: !this.state.isHidden});
   }
 
   endGame() {
@@ -27,8 +39,8 @@ export default class Gameboard extends React.Component {
     return(
       <div className="Game">
         <canvas ref="gameboard"/>
-        <div className="Cover"></div>}
-        <button className="Start_button" onClick={this.startGame}>Start!</button>}
+        {!this.state.isHidden && <div className="Cover"></div>}
+        {!this.state.isHidden && <button className="Start_button" onClick={this.startGame}>Start!</button>}
       </div>
     )
   }
