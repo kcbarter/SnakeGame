@@ -8,11 +8,7 @@ function App() {
       <div className="High_scores">
         <text>High Scores</text>
       </div>
-      <div className="Game">
-        <Gameboard/>
-        <div className="Cover"></div>
-        <button className="Start_button">Start!</button>
-      </div>
+      <Gameboard/>
       <div className="Personal_scores">
         <text>Personal Scores</text>
       </div>

@@ -25,7 +25,11 @@ export default class Gameboard extends React.Component {
 
   render() {
     return(
-      <canvas ref="gameboard"/>
+      <div className="Game">
+        <canvas ref="gameboard"/>
+        <div className="Cover"></div>}
+        <button className="Start_button" onClick={this.startGame}>Start!</button>}
+      </div>
     )
   }
 }
