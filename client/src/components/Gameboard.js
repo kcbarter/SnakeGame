@@ -1,10 +1,16 @@
 import React from 'react';
 
+const RIGHT = 39, LEFT = 37, UP = 38, DOWN = 40;
+
 export default class Gameboard extends React.Component {
+
   constructor(props){
     super(props);
 
-    this.state = {isHidden: false};
+    this.state = {
+      isHidden: false,
+      direction: RIGHT
+    };
     
     this.startGame = this.startGame.bind(this);
   }
@@ -14,56 +20,24 @@ export default class Gameboard extends React.Component {
   }
 
   rect(props) {
-    const {ctx, x, y, width, height} = props;
+    const {ctx, x, y} = props;
     ctx.fillStyle = 'red';
-    ctx.fillRect(x, y, width, height); 
+    ctx.fillRect(x, y, 10, 10); 
   }
 
   intiateCanvas() {
     const ctx = this.refs.gameboard.getContext("2d");
-    this.rect({ctx, x: 10, y: 10, width: 10, height: 10});
-    this.rect({ctx, x: 20, y: 10, width: 10, height: 10});
-    this.rect({ctx, x: 30, y: 10, width: 10, height: 10});
+    this.rect({ctx, x: 10, y: 10});
+    this.rect({ctx, x: 20, y: 10});
+    this.rect({ctx, x: 30, y: 10});
   }
   
   startGame(){
     this.setState({isHidden: !this.state.isHidden});
+    document.addEventListener("keydown", this.changeDirection.bind(this));
   }
 
-  moveSnake(e){
-    var keyCode = 39 || e.keyCode;
-
-    switch(keyCode){
-      case 37: 
-        console.log(keyCode);
-        break;
-      case 38:
-        console.log(keyCode);
-        break;
-      case 39:
-        console.log(keyCode);
-        break;
-      case 40:
-        console.log(keyCode);
-        break;
-      default:
-        console.log("Not an arrow key");
-    }
-  }
-
-  moveLeft(){
-    
-  }
-
-  moveRight(){
-
-  }
-
-  moveUp(){
-    
-  }
-
-  moveDown(){
+  changeDirection(e){
 
   }
 
