@@ -1,11 +1,5 @@
 import React from 'react';
 
-function rect(props) {
-  const {ctx, x, y, width, height} = props;
-  ctx.fillStyle = 'red';
-  ctx.fillRect(x, y, width, height); 
-}
-
 export default class Gameboard extends React.Component {
   constructor(props){
     super(props);
@@ -19,11 +13,17 @@ export default class Gameboard extends React.Component {
     this.intiateCanvas();
   }
 
+  rect(props) {
+    const {ctx, x, y, width, height} = props;
+    ctx.fillStyle = 'red';
+    ctx.fillRect(x, y, width, height); 
+  }
+
   intiateCanvas() {
     const ctx = this.refs.gameboard.getContext("2d");
-    rect({ctx, x: 10, y: 10, width: 10, height: 10});
-    rect({ctx, x: 20, y: 10, width: 10, height: 10});
-    rect({ctx, x: 30, y: 10, width: 10, height: 10});
+    this.rect({ctx, x: 10, y: 10, width: 10, height: 10});
+    this.rect({ctx, x: 20, y: 10, width: 10, height: 10});
+    this.rect({ctx, x: 30, y: 10, width: 10, height: 10});
   }
   
   startGame(){
