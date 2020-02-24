@@ -14,25 +14,22 @@ export default class Gameboard extends React.Component {
     };
     
     this.startGame = this.startGame.bind(this);
+    
+    this.canvasContext = React.createRef();
   }
 
   componentDidMount() {
-    this.intiateCanvas();
+    this.context = this.canvasContext.current.getContext('2d');
+    this.drawSnake();
   }
 
-  drawSnake(props) {
-    const {ctx} = props;
-    // ctx.fillStyle = 'red';
+  drawSnake() {
+    this.context.fillStyle = 'red';
     var currentSnake = this.state.snake;
     
     currentSnake.forEach(section => {
-      ctx.rect(section[0], section[1], 10, 10);
+      this.context.fillRect(section[0], section[1], 10, 10);
     });
-  }
-
-  intiateCanvas() {
-    const ctx = this.refs.gameboard.getContext("2d");
-    this.drawSnake(ctx);
   }
   
   startGame(){
@@ -45,14 +42,13 @@ export default class Gameboard extends React.Component {
   }
 
   endGame() {
-    const ctx = this.refs.gameboard.gameboard("2d");
-    ctx.clearRect(0, 0, 300, 300);
+    this.context.clearRect(0, 0, 300, 300);
   }
 
   render() {
     return(
       <div className="Game">
-        <canvas ref="gameboard" height="300" width="500"/>
+        <canvas ref={this.canvasContext} height="300" width="500"/>
         {!this.state.isHidden && <div className="Cover"></div>}
         {!this.state.isHidden && <button className="Start_button" onClick={this.startGame}>Start!</button>}
       </div>
