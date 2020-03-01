@@ -11,7 +11,8 @@ export default class Gameboard extends React.Component {
     this.state = {
       isHidden: false,
       direction: 39,
-      snake: [[10,140], [20,140], [30, 140]]
+      snake: [[10,140], [20,140], [30, 140]],
+      food: [0,0]
     };
     
     this.startGame = this.startGame.bind(this);
@@ -21,6 +22,7 @@ export default class Gameboard extends React.Component {
   }
 
   componentDidMount() {
+    this.generateFood();
     this.drawSnake();
   }
 
@@ -76,6 +78,30 @@ export default class Gameboard extends React.Component {
     }
 
     this.drawSnake();
+    this.drawFood(this.state.food);
+  }
+
+  drawFood(foodPosition) {
+      var ctx = this.canvasContext.current.getContext('2d');
+      ctx.fillStyle = 'pink';
+      ctx.fillRect(foodPosition[0], foodPosition[1], 10, 10);
+  }
+
+  getRandomCords(){
+    var x = Math.floor(Math.random() * (WIDTH - 9));
+    var y = Math.floor(Math.random() * (HEIGHT - 9));
+    x = Math.round(x/10) * 10;
+    y = Math.round(y/10) * 10;
+    return [x, y];
+  }
+
+  generateFood(){
+    var foodPosition;
+    do{
+      foodPosition = this.getRandomCords();
+    } while(this.state.snake.includes(foodPosition));
+    this.setState({food: foodPosition});
+
   }
 
   endGame() {
