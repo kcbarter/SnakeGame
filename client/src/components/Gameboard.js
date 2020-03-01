@@ -4,6 +4,7 @@ const HEIGHT = 300, WIDTH = 500;
 const DIRECTIONS = [37, 38, 39, 40]; //left, up, right, down
 
 export default class Gameboard extends React.Component {
+  tempDirection = 39;
 
   constructor(props){
     super(props);
@@ -38,18 +39,19 @@ export default class Gameboard extends React.Component {
   startGame(){
     this.setState({isHidden: !this.state.isHidden});
     document.addEventListener("keydown", this.changeDirection.bind(this));
-    setInterval(this.move, 1000);
+    setInterval(this.move, 500);
   }
 
   changeDirection(e){
     var newDirection = e.keyCode;
 
     if(DIRECTIONS.includes(newDirection) && Math.abs(newDirection-this.state.direction) !== 2){
-      this.setState({direction: e.keyCode})
+      this.tempDirection = newDirection;
     }
   }
 
   move(){
+    this.setState({direction: this.tempDirection})
     var currentSnake = this.state.snake;
     var head = currentSnake.length-1;
 
