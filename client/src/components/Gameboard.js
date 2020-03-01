@@ -33,8 +33,6 @@ export default class Gameboard extends React.Component {
     currentSnake.forEach(section => {
       ctx.fillRect(section[0], section[1], 10, 10);
     });
-
-    console.log("drawing: " + currentSnake[0][0]);
   }
   
   startGame(){
@@ -68,7 +66,7 @@ export default class Gameboard extends React.Component {
         currentSnake[head][1] -= 10;
         break;
       case 39: //right
-        currentSnake[head][0] = currentSnake[head][0] + 10;
+        currentSnake[head][0] += 10;
         break;
       case 40: //down
         currentSnake[head][1] += 10;
