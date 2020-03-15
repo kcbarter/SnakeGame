@@ -77,6 +77,7 @@ export default class Gameboard extends React.Component {
         console.log("Oops! That's not a valid direction...");
     }
 
+    this.eatFood();
     this.drawSnake();
     this.drawFood(this.state.food);
   }
@@ -101,7 +102,20 @@ export default class Gameboard extends React.Component {
       foodPosition = this.getRandomCords();
     } while(this.state.snake.includes(foodPosition));
     this.setState({food: foodPosition});
+  }
 
+  eatFood(){
+    var currentSnake = this.state.snake;
+    var head = currentSnake[currentSnake.length - 1];
+    var foodPosition = this.state.food;
+    if(head[0] === foodPosition[0] && head[1] === foodPosition[1]){
+      this.generateFood();
+      this.growSnake();
+    }
+  }
+
+  growSnake(){
+    var currentSnake = this.state.snake;
   }
 
   endGame() {
