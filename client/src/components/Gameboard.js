@@ -17,6 +17,7 @@ export default class Gameboard extends React.Component {
     
     this.startGame = this.startGame.bind(this);
     this.move = this.move.bind(this);
+    this.endGame = this.endGame.bind(this);
     
     this.canvasContext = React.createRef();
   }
@@ -39,7 +40,9 @@ export default class Gameboard extends React.Component {
   startGame(){
     this.setState({isHidden: !this.state.isHidden});
     document.addEventListener("keydown", this.changeDirection.bind(this));
-    setInterval(this.move, 500);
+
+    var intervalId = setInterval(this.move, 500);
+    this.setState({interval: intervalId});
   }
 
   changeDirection(e){
@@ -77,11 +80,45 @@ export default class Gameboard extends React.Component {
         console.log("Oops! That's not a valid direction...");
     }
 
-    this.drawSnake();
+    //check endgame
+    if(this.checkEndGame(currentSnake[head])){
+      this.endGame();
+    } else {
+      this.drawSnake();
+    }
+  }
+
+  checkEndGame(currentHead){
+    var currentSnakeBody = this.state.snake;
+    currentSnakeBody = currentSnakeBody.slice(0, currentSnakeBody.length-1);
+
+    //Check if snake went out of bounds
+    if(currentHead[0] > WIDTH-9 || currentHead[0] < 0
+      || currentHead[1] > HEIGHT-9 || currentHead[1] < 0){
+        return true;
+    }
+
+    //Check if snake hit itself
+    for(var index = 0; index < currentSnakeBody.length; index++){
+      if(currentHead[0] === currentSnakeBody[index][0] && currentHead[1] === currentSnakeBody[index][1]){
+        return true;
+      } 
+    }
+
+    return false;
   }
 
   endGame() {
-    this.context.clearRect(0, 0, WIDTH, HEIGHT);
+    clearInterval(this.state.interval);
+
+    var ctx = this.canvasContext.current.getContext('2d');
+    ctx.clearRect(0, 0, WIDTH, HEIGHT);
+    this.setState({isHidden: false,
+                  direction: 39,
+                  snake: [[10,140], [20,140], [30, 140]]});
+
+    this.tempDirection = 39;
+    this.drawSnake();
   }
 
   render() {
