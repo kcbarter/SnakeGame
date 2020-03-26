@@ -116,6 +116,27 @@ export default class Gameboard extends React.Component {
 
   growSnake(){
     var currentSnake = this.state.snake;
+    var tail = currentSnake[0];
+    var compare = currentSnake[1];
+    var x = tail[0];
+    var y = tail[1];
+
+    if(tail[0] === compare[0]){
+      x = tail[0] + 10; 
+      y = tail[1];
+    }
+    else{
+      x = tail[0];
+      y = tail[1] + 10;
+    }
+
+    var newTail = [x, y];
+
+    console.log('new tail x ' + x + ' vs old tail ' + tail[0]);
+    console.log('new tail y ' + y + ' vs old tail ' + tail[1]);
+
+    currentSnake.unshift([newTail[0], [1]]);
+    this.drawSnake();
   }
 
   endGame() {
