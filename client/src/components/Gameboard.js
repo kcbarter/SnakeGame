@@ -122,22 +122,17 @@ export default class Gameboard extends React.Component {
     var y = tail[1];
 
     if(tail[0] === compare[0]){
-      x = tail[0] + 10; 
-      y = tail[1];
+      x = tail[0]; 
+      y = tail[1] + 10;
     }
     else{
-      x = tail[0];
-      y = tail[1] + 10;
+      x = tail[0] + 10;
+      y = tail[1];
     }
 
     var newTail = [x, y];
 
-    console.log('new tail x ' + x + ' vs old tail ' + tail[0]);
-    console.log('new tail ' + newTail[0] + ' ' + newTail[1]);
-    console.log('old tail ' + tail[0] + ' ' + tail[1]);
-    console.log('new tail y ' + y + ' vs old tail ' + tail[1]);
-
-    currentSnake.unshift([newTail[0], [1]]);
+    currentSnake.unshift([newTail[0], newTail[1]]);
   }
 
   endGame() {
