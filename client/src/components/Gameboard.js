@@ -10,6 +10,8 @@ export default class Gameboard extends React.Component {
     super(props);
 
     this.state = {
+      starting: true,
+      retry: false,
       isHidden: false,
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]]
@@ -38,7 +40,9 @@ export default class Gameboard extends React.Component {
   }
   
   startGame(){
-    this.setState({isHidden: !this.state.isHidden});
+    this.setState({starting: false,
+                  retry: false,
+                  isHidden: !this.state.isHidden});
     document.addEventListener("keydown", this.changeDirection.bind(this));
 
     var intervalId = setInterval(this.move, 500);
@@ -113,7 +117,8 @@ export default class Gameboard extends React.Component {
 
     var ctx = this.canvasContext.current.getContext('2d');
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
-    this.setState({isHidden: false,
+    this.setState({retry: true,
+                  isHidden: false,
                   direction: 39,
                   snake: [[10,140], [20,140], [30, 140]]});
 
@@ -126,7 +131,9 @@ export default class Gameboard extends React.Component {
       <div className="Game">
         <canvas ref={this.canvasContext} height={HEIGHT} width={WIDTH}/>
         {!this.state.isHidden && <div className="Cover"></div>}
-        {!this.state.isHidden && <button className="Start_button" onClick={this.startGame}>Start!</button>}
+        {this.state.starting && <button className="Start_button" onClick={this.startGame}>Start!</button>}
+        {this.state.retry && <label className="Game_over_text">Game Over</label>}
+        {this.state.retry && <button className="Start_button" onClick={this.startGame}>Retry?</button>}
       </div>
     )
   }
