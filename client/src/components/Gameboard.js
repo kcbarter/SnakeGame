@@ -85,8 +85,9 @@ export default class Gameboard extends React.Component {
       default:
         console.log("Oops! That's not a valid direction...");
     }
-
-<<<<<<< HEAD
+    if(this.checkEndGame(currentSnake[head])){
+      this.endGame();
+    }
     this.eatFood();
     this.drawSnake();
     this.drawFood(this.state.food);
@@ -143,13 +144,14 @@ export default class Gameboard extends React.Component {
     var newTail = [x, y];
 
     currentSnake.unshift([newTail[0], newTail[1]]);
-=======
+    var head = currentSnake.length-1;
+    
     //check endgame
     if(this.checkEndGame(currentSnake[head])){
-      this.endGame();
-    } else {
-      this.drawSnake();
-    }
+       this.endGame();
+     } else {
+       this.drawSnake();
+     }
   }
 
   checkEndGame(currentHead){
@@ -170,7 +172,6 @@ export default class Gameboard extends React.Component {
     }
 
     return false;
->>>>>>> origin/end_game_3_1
   }
 
   endGame() {
