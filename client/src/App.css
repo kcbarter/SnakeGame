@@ -14,6 +14,10 @@
   border-color: darkorchid;
 }
 
+.CurrentScore{
+  color: red;
+}
+
 .Game{
   position: relative;
   grid-row: 1 / span 2;
@@ -44,6 +48,12 @@ canvas{
 }
 
 .Game_over_text{
+  position: absolute;
+  top: 40%;
+  left: 45%;
+}
+
+.Game_over_score{
   position: absolute;
   top: 45%;
   left: 45%;
