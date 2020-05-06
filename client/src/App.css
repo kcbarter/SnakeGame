@@ -4,20 +4,26 @@
   grid-gap: 0.5em;
   column-count: 2;
   grid-template-columns: 40% 60%;
-  grid-template-rows: 50% 20% 30%;
+  grid-template-rows: 50% 50%;
 }
 
-.App > div{
+.Game{
+  grid-row: 1 / span 2;
+  display: grid;
+  grid-gap: 0.5em;
+  grid-template-rows: 70% 30%;
+}
+
+.App > div:not(:last-child), .Game > div{
   display: block;
   background-color: darkgray;
   border: 0.5em solid;
   border-color: darkorchid;
 }
 
-.Game{
+.Gameboard{
   position: relative;
-  grid-row: 1 / span 2;
-  grid-column: 2;
+  grid-row: 1;
   text-align: center;
   vertical-align: center;
 }
@@ -50,13 +56,12 @@ canvas{
 }
 
 .Game_settings{
-  grid-row: 3;
-  grid-column: 2;
+  grid-row: 2;
   text-align: center;
 }
 
 .Personal_scores{
-  grid-row: 2 / span 2;
+  grid-row: 2;
 }
 
 #speed-slider{

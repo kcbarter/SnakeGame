@@ -46,6 +46,7 @@ export default class Settings extends React.Component{
                     marks={marks}
                     min={0.5}
                     max={4}
+                    onChangeCommitted={this.props.setSpeed}
                 />
             </div>
         )

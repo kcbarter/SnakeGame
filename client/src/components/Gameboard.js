@@ -48,7 +48,7 @@ export default class Gameboard extends React.Component{
                   isHidden: !this.state.isHidden});
     document.addEventListener("keydown", this.changeDirection.bind(this));
 
-    var intervalId = setInterval(this.move, (SPEED / 1)); //this.props.speedMod));
+    var intervalId = setInterval(this.move, (SPEED / this.props.speedMod));
     this.setState({interval: intervalId});
   }
 
@@ -191,7 +191,7 @@ export default class Gameboard extends React.Component{
 
   render() {
     return(
-      <div className="Game">
+      <div className="Gameboard">
         <canvas ref={this.canvasContext} height={HEIGHT} width={WIDTH}/>
         {!this.state.isHidden && <div className="Cover"></div>}
         {this.state.starting && <button className="Start_button" onClick={this.startGame}>Start!</button>}
