@@ -2,8 +2,9 @@ import React from 'react';
 
 const HEIGHT = 300, WIDTH = 500;
 const DIRECTIONS = [37, 38, 39, 40]; //left, up, right, down
+const SPEED = 250;
 
-export default class Gameboard extends React.Component {
+export default class Gameboard extends React.Component{
   tempDirection = 39;
 
   constructor(props){
@@ -47,7 +48,7 @@ export default class Gameboard extends React.Component {
                   isHidden: !this.state.isHidden});
     document.addEventListener("keydown", this.changeDirection.bind(this));
 
-    var intervalId = setInterval(this.move, 500);
+    var intervalId = setInterval(this.move, (SPEED / 1)); //this.props.speedMod));
     this.setState({interval: intervalId});
   }
 

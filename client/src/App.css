@@ -52,8 +52,13 @@ canvas{
 .Game_settings{
   grid-row: 3;
   grid-column: 2;
+  text-align: center;
 }
 
 .Personal_scores{
   grid-row: 2 / span 2;
+}
+
+#speed-slider{
+  width: 75%;
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import Gameboard from './components/Gameboard';
 import './App.css';
+import Settings from './components/Setting';
 
 function App() {
   return (
@@ -12,9 +13,7 @@ function App() {
       <div className="Personal_scores">
         <text>Personal Scores</text>
       </div>
-      <div className="Game_settings">
-        <text>Settings</text>
-      </div>
+      <Settings/>
     </div>
   );
 }
