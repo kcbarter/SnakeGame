@@ -16,8 +16,7 @@ export default class Gameboard extends React.Component{
       isHidden: false,
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]],
-      food: [0,0],
-      openBorder: false
+      food: [0,0]
     };
     
     this.startGame = this.startGame.bind(this);
@@ -92,16 +91,16 @@ export default class Gameboard extends React.Component{
       this.endGame();
     }
     else{
-      if(this.state.openBorder && currentSnake[head][0] > WIDTH-9){
+      if(this.props.openBorder && currentSnake[head][0] > WIDTH-9){
         currentSnake[head][0] = 0;
       }
-      else if(this.state.openBorder && currentSnake[head][0] < 0){
+      else if(this.props.openBorder && currentSnake[head][0] < 0){
         currentSnake[head][0] = WIDTH;
       }
-      else if(this.state.openBorder && currentSnake[head][1] > HEIGHT-9){
+      else if(this.props.openBorder && currentSnake[head][1] > HEIGHT-9){
         currentSnake[head][1] = 0;
       }
-      else if(this.state.openBorder && currentSnake[head][1] < 0){
+      else if(this.props.openBorder && currentSnake[head][1] < 0){
         currentSnake[head][1] = HEIGHT;
       }
     }

@@ -7,7 +7,8 @@ export default class Game extends React.Component{
         super(props)
 
         this.state = {
-            speedMod: 1
+            speedMod: 1,
+            openBorder: false
         }
 
         this.setSpeed = this.setSpeed.bind(this);
@@ -19,11 +20,17 @@ export default class Game extends React.Component{
         })
     }
 
+    setBorder(event, border){
+        this.setState({
+            openBorder: border
+        })
+    }
+
     render(){
         return(
             <div className="Game">
-                <Gameboard speedMod = {this.state.speedMod}/>
-                <Settings setSpeed = {this.setSpeed}/>
+                <Gameboard speedMod = {this.state.speedMod} openBorder = {this.state.openBorder}/>
+                <Settings setSpeed = {this.setSpeed} setBorder = {this.setBorder}/>
             </div>
         )
     }
