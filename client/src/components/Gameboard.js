@@ -16,7 +16,8 @@ export default class Gameboard extends React.Component{
       isHidden: false,
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]],
-      food: [0,0]
+      food: [0,0],
+      openBorder: false
     };
     
     this.startGame = this.startGame.bind(this);
@@ -86,8 +87,23 @@ export default class Gameboard extends React.Component{
       default:
         console.log("Oops! That's not a valid direction...");
     }
+    
     if(this.checkEndGame(currentSnake[head])){
       this.endGame();
+    }
+    else{
+      if(this.state.openBorder && currentSnake[head][0] > WIDTH-9){
+        currentSnake[head][0] = 0;
+      }
+      else if(this.state.openBorder && currentSnake[head][0] < 0){
+        currentSnake[head][0] = WIDTH;
+      }
+      else if(this.state.openBorder && currentSnake[head][1] > HEIGHT-9){
+        currentSnake[head][1] = 0;
+      }
+      else if(this.state.openBorder && currentSnake[head][1] < 0){
+        currentSnake[head][1] = HEIGHT;
+      }
     }
     this.eatFood();
     this.drawSnake();
@@ -160,9 +176,11 @@ export default class Gameboard extends React.Component{
     currentSnakeBody = currentSnakeBody.slice(0, currentSnakeBody.length-1);
 
     //Check if snake went out of bounds
-    if(currentHead[0] > WIDTH-9 || currentHead[0] < 0
-      || currentHead[1] > HEIGHT-9 || currentHead[1] < 0){
-        return true;
+    if(!this.state.openBorder){
+      if(currentHead[0] > WIDTH-9 || currentHead[0] < 0
+        || currentHead[1] > HEIGHT-9 || currentHead[1] < 0){
+          return true;
+      }
     }
 
     //Check if snake hit itself
