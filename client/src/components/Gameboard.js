@@ -16,7 +16,8 @@ export default class Gameboard extends React.Component{
       isHidden: false,
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]],
-      food: [0,0]
+      food: [0,0],
+      score: 0
     };
     
     this.startGame = this.startGame.bind(this);
@@ -45,6 +46,7 @@ export default class Gameboard extends React.Component{
   startGame(){
     this.setState({starting: false,
                   retry: false,
+                  score: 0,
                   isHidden: !this.state.isHidden});
     document.addEventListener("keydown", this.changeDirection.bind(this));
 
@@ -167,6 +169,8 @@ export default class Gameboard extends React.Component{
        this.endGame();
      } else {
        this.drawSnake();
+       this.state.score++;
+       console.log(this.state.score);
      }
   }
 
@@ -213,7 +217,9 @@ export default class Gameboard extends React.Component{
         {!this.state.isHidden && <div className="Cover"></div>}
         {this.state.starting && <button className="Start_button" onClick={this.startGame}>Start!</button>}
         {this.state.retry && <label className="Game_over_text">Game Over</label>}
+        {this.state.retry && <label className="Game_over_score">Your Score: {this.state.score}</label>}
         {this.state.retry && <button className="Start_button" onClick={this.startGame}>Retry?</button>}
+        <p className="CurrentScore">Current score: {this.state.score}</p>
       </div>
     )
   }
