@@ -17,7 +17,8 @@ export default class Gameboard extends React.Component{
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]],
       food: [0,0],
-      score: 0
+      score: 0,
+      openBorder: false
     };
     
     this.startGame = this.startGame.bind(this);
