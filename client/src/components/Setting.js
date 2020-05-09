@@ -53,7 +53,7 @@ export default class Settings extends React.Component{
                     Open Border?
                 </Typography>
                 <Checkbox id="open-border"
-                    aria-labeledby="open-border-label"
+                    aria-labelledby="open-border-label"
                     value={!this.props.setBorder}
                     onChange={this.props.setBorder}
                 />
