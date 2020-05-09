@@ -21,15 +21,11 @@
   border-color: darkorchid;
 }
 
-<<<<<<< HEAD
-.Gameboard{
-=======
 .CurrentScore{
   color: red;
 }
 
 .Game{
->>>>>>> game_score_4_21
   position: relative;
   grid-row: 1;
   text-align: center;
