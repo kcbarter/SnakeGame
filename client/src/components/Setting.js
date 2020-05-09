@@ -1,6 +1,7 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Slider from '@material-ui/core/Slider';
+import { Checkbox } from '@material-ui/core';
 
 const marks = [
     {
@@ -47,6 +48,14 @@ export default class Settings extends React.Component{
                     min={0.5}
                     max={4}
                     onChangeCommitted={this.props.setSpeed}
+                />
+                <Typography id="open-border-label">
+                    Open Border?
+                </Typography>
+                <Checkbox id="open-border"
+                    aria-labeledby="open-border-label"
+                    value={!this.props.setBorder}
+                    onChange={this.props.setBorder}
                 />
             </div>
         )

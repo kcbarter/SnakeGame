@@ -179,7 +179,7 @@ export default class Gameboard extends React.Component{
     currentSnakeBody = currentSnakeBody.slice(0, currentSnakeBody.length-1);
 
     //Check if snake went out of bounds
-    if(!this.state.openBorder){
+    if(!this.props.openBorder){
       if(currentHead[0] > WIDTH-9 || currentHead[0] < 0
         || currentHead[1] > HEIGHT-9 || currentHead[1] < 0){
           return true;

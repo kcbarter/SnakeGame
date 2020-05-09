@@ -12,6 +12,7 @@ export default class Game extends React.Component{
         }
 
         this.setSpeed = this.setSpeed.bind(this);
+        this.setBorder = this.setBorder.bind(this);
     }
 
     setSpeed(event, speed){
