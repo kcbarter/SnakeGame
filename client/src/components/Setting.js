@@ -49,14 +49,17 @@ export default class Settings extends React.Component{
                     max={4}
                     onChangeCommitted={this.props.setSpeed}
                 />
-                <Typography id="open-border-label">
+
+                <div className="Border_setting">
+                  <Typography id="open-border-label">
                     Open Border?
-                </Typography>
-                <Checkbox id="open-border"
+                  </Typography>
+                  <Checkbox id="open-border"
                     aria-labelledby="open-border-label"
                     value={!this.props.setBorder}
                     onChange={this.props.setBorder}
-                />
+                  />
+                </div>
             </div>
         )
     }

@@ -56,7 +56,6 @@ canvas{
   top: 42.5%;
   left: 42.5%;
   text-align: center;
-  
 }
 
 .Game_stats > *{
@@ -74,5 +73,17 @@ canvas{
 }
 
 #speed-slider{
+  display: block;
+  left: 12.5%;
   width: 75%;
+  margin-bottom: 3em;
+}
+
+.Border_setting{
+  position: relative;
+  width: 100%;
+}
+
+#open-border, #open-border-label{
+  display: inline;
 }
