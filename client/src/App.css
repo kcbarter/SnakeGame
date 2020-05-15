@@ -1,4 +1,8 @@
 .App{
+  min-height: 93vh;
+  max-height: 95vh;
+  min-width: 93vw;
+  max-width: 95vw;
   margin: 1em;
   display: grid;
   grid-gap: 0.5em;
@@ -9,9 +13,10 @@
 
 .Game{
   grid-row: 1 / span 2;
+  grid-column: 2;
   display: grid;
   grid-gap: 0.5em;
-  grid-template-rows: 70% 30%;
+  grid-template-rows: 70% 29%;
 }
 
 .App > div:not(:last-child), .Game > div{
@@ -21,15 +26,12 @@
   border-color: darkorchid;
 }
 
-.CurrentScore{
-  color: red;
+.Gameboard{
+  position: relative;
 }
 
-.Game{
-  position: relative;
-  grid-row: 1;
-  text-align: center;
-  vertical-align: center;
+.CurrentScore{
+  color: red;
 }
 
 canvas{
@@ -47,22 +49,19 @@ canvas{
   background-color: white;
 }
 
-.Start_button{
+.Game_stats{
   position: absolute;
-  top: 50%;
-  left: 46%;
+  height: 15%;
+  width: 15%;
+  top: 42.5%;
+  left: 42.5%;
+  text-align: center;
+  
 }
 
-.Game_over_text{
-  position: absolute;
-  top: 40%;
-  left: 45%;
-}
-
-.Game_over_score{
-  position: absolute;
-  top: 45%;
-  left: 45%;
+.Game_stats > *{
+  display: block;
+  margin: auto;
 }
 
 .Game_settings{

@@ -169,7 +169,9 @@ export default class Gameboard extends React.Component{
        this.endGame();
      } else {
        this.drawSnake();
-       this.state.score++;
+       this.setState({
+         score: this.state.score + 1
+       });
        console.log(this.state.score);
      }
   }
@@ -215,10 +217,12 @@ export default class Gameboard extends React.Component{
       <div className="Gameboard">
         <canvas ref={this.canvasContext} height={HEIGHT} width={WIDTH}/>
         {!this.state.isHidden && <div className="Cover"></div>}
-        {this.state.starting && <button className="Start_button" onClick={this.startGame}>Start!</button>}
-        {this.state.retry && <label className="Game_over_text">Game Over</label>}
-        {this.state.retry && <label className="Game_over_score">Your Score: {this.state.score}</label>}
-        {this.state.retry && <button className="Start_button" onClick={this.startGame}>Retry?</button>}
+        <div className="Game_stats">
+          {this.state.starting && <button onClick={this.startGame}>Start!</button>}
+          {this.state.retry && <label>Game Over</label>}
+          {this.state.retry && <label>Your Score: {this.state.score}</label>}
+          {this.state.retry && <button onClick={this.startGame}>Retry?</button>}
+        </div>
         <p className="CurrentScore">Current score: {this.state.score}</p>
       </div>
     )
