@@ -30,7 +30,8 @@ export default class Game extends React.Component{
     render(){
         return(
             <div className="Game">
-                <Gameboard speedMod = {this.state.speedMod} openBorder = {this.state.openBorder}/>
+                <Gameboard update = {this.props.update} speedMod = {this.state.speedMod} 
+                    openBorder = {this.state.openBorder}/>
                 <Settings setSpeed = {this.setSpeed} setBorder = {this.setBorder}/>
             </div>
         )

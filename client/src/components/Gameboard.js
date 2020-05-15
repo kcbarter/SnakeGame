@@ -6,6 +6,7 @@ const SPEED = 250;
 
 export default class Gameboard extends React.Component{
   tempDirection = 39;
+  score = 0;
 
   constructor(props){
     super(props);
@@ -16,8 +17,7 @@ export default class Gameboard extends React.Component{
       isHidden: false,
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]],
-      food: [0,0],
-      score: 0
+      food: [0,0]
     };
     
     this.startGame = this.startGame.bind(this);
@@ -46,8 +46,9 @@ export default class Gameboard extends React.Component{
   startGame(){
     this.setState({starting: false,
                   retry: false,
-                  score: 0,
                   isHidden: !this.state.isHidden});
+    this.score = 0;
+    this.props.update(this.score);
     document.addEventListener("keydown", this.changeDirection.bind(this));
 
     var intervalId = setInterval(this.move, (SPEED / this.props.speedMod));
@@ -169,9 +170,8 @@ export default class Gameboard extends React.Component{
        this.endGame();
      } else {
        this.drawSnake();
-       this.setState({
-         score: this.state.score + 1
-       });
+       this.score++;
+       this.props.update(this.score);
        console.log(this.state.score);
      }
   }
@@ -220,7 +220,7 @@ export default class Gameboard extends React.Component{
         <div className="Game_stats">
           {this.state.starting && <button onClick={this.startGame}>Start!</button>}
           {this.state.retry && <label>Game Over</label>}
-          {this.state.retry && <label>Your Score: {this.state.score}</label>}
+          {this.state.retry && <label>Your Score: {this.score}</label>}
           {this.state.retry && <button onClick={this.startGame}>Retry?</button>}
         </div>
         <p className="CurrentScore">Current score: {this.state.score}</p>
