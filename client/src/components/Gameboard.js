@@ -223,7 +223,6 @@ export default class Gameboard extends React.Component{
           {this.state.retry && <label>Your Score: {this.score}</label>}
           {this.state.retry && <button onClick={this.startGame}>Retry?</button>}
         </div>
-        <p className="CurrentScore">Current score: {this.state.score}</p>
       </div>
     )
   }
