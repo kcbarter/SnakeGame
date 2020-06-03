@@ -25,7 +25,7 @@ class App extends React.Component{
       <div className="App">
         <HighScores score = {this.state.score}/>
         <div className="Personal_scores">
-          <text>Personal Scores</text>
+          <label>Personal Scores</label>
         </div>
         <Game update = {this.update}/>
       </div>

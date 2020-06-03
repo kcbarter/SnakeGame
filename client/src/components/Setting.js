@@ -34,7 +34,7 @@ export default class Settings extends React.Component{
     render(){
         return(
             <div className="Game_settings">
-                <Typography id="speed-label" gutterBottom>
+                <Typography id="speed-label">
                     Speed Modifier
                 </Typography>
                 <Slider id="speed-slider"
