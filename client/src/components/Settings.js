@@ -22,6 +22,7 @@ const marks = [
     },
   ];
   
+  //TODO determine whether or not these following to functions are necessary
   function valuetext(value) {
     return `${value}°C`;
   }

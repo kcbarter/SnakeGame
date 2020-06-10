@@ -1,6 +1,6 @@
 import React from 'react';
 import Gameboard from './Gameboard';
-import Settings from './Setting';
+import Settings from './Settings';
 
 export default class Game extends React.Component{
     constructor(props){

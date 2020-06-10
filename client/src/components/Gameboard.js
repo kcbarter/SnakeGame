@@ -215,13 +215,13 @@ export default class Gameboard extends React.Component{
   render() {
     return(
       <div className="Gameboard">
-        <canvas ref={this.canvasContext} height={HEIGHT} width={WIDTH}/>
-        {!this.state.isHidden && <div className="Cover"></div>}
+        <canvas id="canvasBoard" ref={this.canvasContext} height={HEIGHT} width={WIDTH}/>
+        {!this.state.isHidden && <div id="cover" className="Cover"></div>}
         <div className="Game_stats">
-          {this.state.starting && <button onClick={this.startGame}>Start!</button>}
           {this.state.retry && <label>Game Over</label>}
           {this.state.retry && <label>Your Score: {this.score}</label>}
-          {this.state.retry && <button onClick={this.startGame}>Retry?</button>}
+          {!this.state.isHidden && 
+            <button onClick={this.startGame}>{this.state.starting ? 'Start!' : 'Retry?'}</button>}
         </div>
       </div>
     )

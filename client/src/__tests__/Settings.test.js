@@ -1,11 +1,10 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import Setting from '../components/Setting';
-import Settings from '../components/Setting';
+import Settings from '../components/Settings';
 
 describe('renders all setting', () => {
     test('renders speed settings', () => {
-        const wrapper = shallow(<Setting/>);
+        const wrapper = shallow(<Settings/>);
         
         //Div containing speed settings with adjuster and label
         expect(wrapper.find('.Game_settings')).toHaveLength(1);
@@ -14,7 +13,7 @@ describe('renders all setting', () => {
     });
 
     test('renders open border settings', () => {
-        const wrapper = shallow(<Setting/>);
+        const wrapper = shallow(<Settings/>);
         
         //Div containing speed settings with adjuster and label
         expect(wrapper.find('.Border_setting')).toHaveLength(1);
