@@ -1,7 +1,6 @@
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import Gameboard from '../components/Gameboard';
-import { jssPreset } from '@material-ui/core';
 
 describe('renders appropriate part of Gameboard at any point', ()=> {
     test('renders canvas, cover and button without labels upon intial render', ()=> {
