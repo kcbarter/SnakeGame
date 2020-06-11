@@ -17,7 +17,7 @@ export default class Gameboard extends React.Component{
       isHidden: false,
       direction: 39,
       snake: [[10,140], [20,140], [30, 140]],
-      food: [0,0]
+      food: this.getRandomCords()
     };
     
     this.startGame = this.startGame.bind(this);
@@ -28,8 +28,8 @@ export default class Gameboard extends React.Component{
   }
 
   componentDidMount() {
-    this.generateFood();
     this.drawSnake();
+    this.drawFood();
   }
 
   drawSnake() {
@@ -107,31 +107,10 @@ export default class Gameboard extends React.Component{
         currentSnake[head][1] = HEIGHT;
       }
     }
+
     this.eatFood();
     this.drawSnake();
-    this.drawFood(this.state.food);
-  }
-
-  drawFood(foodPosition) {
-      var ctx = this.canvasContext.current.getContext('2d');
-      ctx.fillStyle = 'pink';
-      ctx.fillRect(foodPosition[0], foodPosition[1], 10, 10);
-  }
-
-  getRandomCords(){
-    var x = Math.floor(Math.random() * (WIDTH - 9));
-    var y = Math.floor(Math.random() * (HEIGHT - 9));
-    x = Math.round(x/10) * 10;
-    y = Math.round(y/10) * 10;
-    return [x, y];
-  }
-
-  generateFood(){
-    var foodPosition;
-    do{
-      foodPosition = this.getRandomCords();
-    } while(this.state.snake.includes(foodPosition));
-    this.setState({food: foodPosition});
+    this.drawFood();
   }
 
   eatFood(){
@@ -142,6 +121,29 @@ export default class Gameboard extends React.Component{
       this.generateFood();
       this.growSnake();
     }
+  }
+
+  generateFood(){
+    var foodPosition;
+    do{
+      foodPosition = this.getRandomCords();
+    } while(this.state.snake.includes(foodPosition));
+    this.setState({food: foodPosition});
+    this.drawFood();
+  }
+
+  getRandomCords(){
+    var x = Math.floor(Math.random() * (WIDTH - 9));
+    var y = Math.floor(Math.random() * (HEIGHT - 9));
+    x = Math.round(x/10) * 10;
+    y = Math.round(y/10) * 10;
+    return [x, y];
+  }
+
+  drawFood() {
+    var ctx = this.canvasContext.current.getContext('2d');
+    ctx.fillStyle = 'pink';
+    ctx.fillRect(this.state.food[0], this.state.food[1], 10, 10);
   }
 
   growSnake(){
@@ -163,17 +165,9 @@ export default class Gameboard extends React.Component{
     var newTail = [x, y];
 
     currentSnake.unshift([newTail[0], newTail[1]]);
-    var head = currentSnake.length-1;
-    
-    //check endgame
-    if(this.checkEndGame(currentSnake[head])){
-       this.endGame();
-     } else {
-       this.drawSnake();
-       this.score++;
-       this.props.update(this.score);
-       console.log(this.state.score);
-     }
+
+    this.score++;
+    this.props.update(this.score);
   }
 
   checkEndGame(currentHead){
